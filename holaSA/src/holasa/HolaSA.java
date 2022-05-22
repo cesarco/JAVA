@@ -36,25 +36,76 @@ public class HolaSA {
 //        } else {
 //            System.out.println("Es menor de edad");
 //        }
+//
+//        InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+//        BufferedReader reader = new BufferedReader(inputStreamReader);
+//        System.out.println("Ingrese su nombre:");
+//        String name = reader.readLine();
+//        System.out.println("Hola " + name);
+//
+//        System.out.println("");
+//
+//        System.out.println("Ingrese su edad:");
+//        String strEdad = reader.readLine();
+//        int edad = Integer.parseInt(strEdad);
+//        System.out.println("Hola " + name);
+//
+//        if (edad >= 18) {
+//            System.out.println("Es mayor de edad");
+//        } else {
+//            System.out.println("Es menor de edad");
+//        }
 
-        InputStreamReader inputStreamReader = new InputStreamReader(System.in);
-        BufferedReader reader = new BufferedReader(inputStreamReader);
-        System.out.println("Ingrese su nombre:");
-        String name = reader.readLine();
-        System.out.println("Hola " + name);
+        System.out.println("Ingrese el primer numero:");
+        int numUno = cargarNumero();
 
-        System.out.println("");
+        System.out.println("Ingrese el segundo numero:");
+        int numDos = cargarNumero();
 
-        System.out.println("Ingrese su edad:");
-        String strEdad = reader.readLine();
-        int edad = Integer.parseInt(strEdad);
-        System.out.println("Hola " + name);
+        System.out.println("Ingrese el tercer numero:");
+        int numTres = cargarNumero();
 
-        if (edad >= 18) {
-            System.out.println("Es mayor de edad");
-        } else {
-            System.out.println("Es menor de edad");
-        }
+        calcularNumeroMayor(numUno, numDos, numTres);
+        calcularNumeroMenor(numUno, numDos, numTres);
+
     }
 
+    private static Integer cargarNumero() throws IOException {
+        InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+        BufferedReader reader = new BufferedReader(inputStreamReader);
+        String strNum = reader.readLine();
+        int num = Integer.parseInt(strNum);
+
+        return num;
+    }
+
+    private static void calcularNumeroMayor(int numUno, int numDos, int numTres) {
+        Integer mayor = numUno;
+
+        if (numDos > mayor) {
+            mayor = numDos;
+
+        }
+        if (numTres > mayor) {
+            mayor = numTres;
+
+        }
+        System.out.println("El numero mayor es: " + mayor);
+
+    }
+
+    private static void calcularNumeroMenor(int numUno, int numDos, int numTres) {
+
+        Integer numeroMenor = numUno;
+
+        if (numDos < numeroMenor) {
+            numeroMenor = numDos;
+
+        }
+        if (numTres < numeroMenor) {
+            numeroMenor = numTres;
+
+        }
+        System.out.println("El numero menor es: " + numeroMenor);
+    }
 }
