@@ -10,11 +10,20 @@ package holasa;
  */
 public class HolaSA {
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
-        System.out.println("hola");
+                // creando una variable de tipo string
+      String nombre="Cesar Luis";
+      
+      // imprime en la consola, lo que se guardo en la variable
+      System.out.println(nombre);
+      
+      // Formas de concatenar
+      String nombreCompleto = "Cesar Luis" + "Rodriguez Solera";
+      System.out.println("Bienvenido " + nombreCompleto + " Es un gusto verlo");
+      
+      int edad = 19;
+      System.out.println(edad);
     }
     
 }
