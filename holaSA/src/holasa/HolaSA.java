@@ -37,12 +37,24 @@ public class HolaSA {
 //            System.out.println("Es menor de edad");
 //        }
 
+        InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+        BufferedReader reader = new BufferedReader(inputStreamReader);
+        System.out.println("Ingrese su nombre:");
+        String name = reader.readLine();
+        System.out.println("Hola " + name);
 
-InputStreamReader inputStreamReader = new InputStreamReader(System.in);
-BufferedReader reader = new BufferedReader(inputStreamReader);
-System.out.println("Ingrese su nombre:");
-String name = reader.readLine();
-System.out.println("Hola " + name);
+        System.out.println("");
+
+        System.out.println("Ingrese su edad:");
+        String strEdad = reader.readLine();
+        int edad = Integer.parseInt(strEdad);
+        System.out.println("Hola " + name);
+
+        if (edad >= 18) {
+            System.out.println("Es mayor de edad");
+        } else {
+            System.out.println("Es menor de edad");
+        }
     }
 
 }
