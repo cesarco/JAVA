@@ -69,7 +69,6 @@ public class EJercicios {
             cual es el numero promedio.
             Ejemplo: si cargo 2, 6 y 9, el promedio es 5.66
          */
-        
         System.out.println("Ingrese el primer numero:");
         int numUno = cargarNumero();
 
@@ -105,24 +104,24 @@ public class EJercicios {
         System.out.println("El promedio de los tres numeros es: " + promedio);
 
     }
-    
+
     /*
     Armar un programa que permita ingresar un nùmero y mostrar si es par o impar
-    */
-    
+     */
     /**
      * esta funcion nos permite mostrar si un numero es par o impar
+     *
      * @param numUno es el unico parametro que recibe
      */
-    private static void parImpar(int numUno){
-       boolean parOImapar = numUno % 2 == 0;
-       
-       if(parOImapar){
-           System.out.println("El numero " + numUno + " es par");
-       }else{
-           System.out.println("El numero " + numUno + " es impar");
-       }
-           
-           
+    private static void parImpar(int numUno) {
+
+        boolean parOImapar = numUno % 2 == 0;
+
+        if (parOImapar) {
+            System.out.println("El numero " + numUno + " es par");
+        } else {
+            System.out.println("El numero " + numUno + " es impar");
+        }
+
     }
 }
