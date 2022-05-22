@@ -56,6 +56,7 @@ public class HolaSA {
 //            System.out.println("Es menor de edad");
 //        }
 
+// con este codigo pedimos numero
         System.out.println("Ingrese el primer numero:");
         int numUno = cargarNumero();
 
@@ -64,12 +65,16 @@ public class HolaSA {
 
         System.out.println("Ingrese el tercer numero:");
         int numTres = cargarNumero();
-
+// con este codigo calculamos el numero mayor y el numero menor
         calcularNumeroMayor(numUno, numDos, numTres);
         calcularNumeroMenor(numUno, numDos, numTres);
 
     }
 
+    /**
+     *
+     * @return @throws IOException
+     */
     private static Integer cargarNumero() throws IOException {
         InputStreamReader inputStreamReader = new InputStreamReader(System.in);
         BufferedReader reader = new BufferedReader(inputStreamReader);
@@ -78,7 +83,12 @@ public class HolaSA {
 
         return num;
     }
-
+    /**
+     *Esta funcion sirve para mostrar el calculo de un numero mayor
+     * @param numUno  Es el primer numero
+     * @param numDos  Es el segundo numero
+     * @param numTres Es el segundo numero
+     */
     private static void calcularNumeroMayor(int numUno, int numDos, int numTres) {
         Integer mayor = numUno;
 
@@ -93,7 +103,12 @@ public class HolaSA {
         System.out.println("El numero mayor es: " + mayor);
 
     }
-
+/**
+ * Esta funciòn sirve para mostrar el calculo de un numero menor
+ * @param numUno Es el primer numero
+ * @param numDos Es el segundo numero
+ * @param numTres  Es el tercer numero
+ */
     private static void calcularNumeroMenor(int numUno, int numDos, int numTres) {
 
         Integer numeroMenor = numUno;
