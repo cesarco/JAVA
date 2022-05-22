@@ -23,46 +23,84 @@ public class EJercicios {
         Armar un programa que permita cargar 3 nùmeros y mostrar
         cual es el mayor y cual es el menor
          */
-        InputStreamReader inputStreamReader = new InputStreamReader(System.in);
-        BufferedReader reader = new BufferedReader(inputStreamReader);
+//        InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+//        BufferedReader reader = new BufferedReader(inputStreamReader);
+//
+//        System.out.println("Ingrese el primer numero:");
+//        String strNum = reader.readLine();
+//        int numUno = Integer.parseInt(strNum);
+//
+//        System.out.println("Ingrese el segundo numero:");
+//        String strNumD = reader.readLine();
+//        int numDos = Integer.parseInt(strNumD);
+//
+//        System.out.println("Ingrese el tercer numero:");
+//        String strNumT = reader.readLine();
+//        int numTres = Integer.parseInt(strNumT);
+//
+//        Integer mayor = numUno;
+//
+//        if (numDos > mayor) {
+//            mayor = numDos;
+//
+//        }
+//        if (numTres > mayor) {
+//            mayor = numTres;
+//
+//        }
+//        System.out.println("El numero mayor es: " + mayor);
+//        
+//        
+//        
+//        Integer numeroMenor = numUno;
+//
+//        if (numDos < numeroMenor) {
+//            mayor = numDos;
+//
+//        }
+//        if (numTres < numeroMenor) {
+//            mayor = numTres;
+//
+//        }
+//        System.out.println("El numero menor es: " + numeroMenor);
 
+        /* 
+            Armar un programa que permita cargar 3 numeros y mostrar
+            cual es el numero promedio.
+            Ejemplo: si cargo 2, 6 y 9, el promedio es 5.66
+         */
         System.out.println("Ingrese el primer numero:");
-        String strNum = reader.readLine();
-        int numUno = Integer.parseInt(strNum);
+        int numUno = cargarNumero();
 
         System.out.println("Ingrese el segundo numero:");
-        String strNumD = reader.readLine();
-        int numDos = Integer.parseInt(strNumD);
+        int numDos = cargarNumero();
 
         System.out.println("Ingrese el tercer numero:");
-        String strNumT = reader.readLine();
-        int numTres = Integer.parseInt(strNumT);
+        int numTres = cargarNumero();
 
-        Integer mayor = numUno;
+        calcularPromedio(numUno, numDos, numTres);
+    }
 
-        if (numDos > mayor) {
-            mayor = numDos;
+    private static Integer cargarNumero() throws IOException {
+        InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+        BufferedReader reader = new BufferedReader(inputStreamReader);
+        String strNum = reader.readLine();
+        int num = Integer.parseInt(strNum);
 
-        }
-        if (numTres > mayor) {
-            mayor = numTres;
+        return num;
+    }
 
-        }
-        System.out.println("El numero mayor es: " + mayor);
-        
-        
-        
-        Integer numeroMenor = numUno;
-
-        if (numDos < numeroMenor) {
-            mayor = numDos;
-
-        }
-        if (numTres < numeroMenor) {
-            mayor = numTres;
-
-        }
-        System.out.println("El numero menor es: " + numeroMenor);
+    /**
+     * Esta funcion sirve para calcular el promedio de tres numeros
+     *
+     * @param numUno Es el primer numero
+     * @param numDos Es el segundo numero
+     * @param numTres Es el tercer numero
+     */
+    private static void calcularPromedio(int numUno, int numDos, int numTres) {
+        int sumatoria = numUno + numDos + numTres;
+        double promedio = Double.valueOf(sumatoria) / 3;
+        System.out.println("El promedio de los tres numeros es: " + promedio);
 
     }
 }
