@@ -14,22 +14,29 @@ public class EjercicioDos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        int numero = 13;
-        Boolean esPrimo = true;
-        
-        for (int i = 2; i < numero; i++) {
-           if(numero % i == 0){
-               esPrimo = false;
-               
-           } 
+        String resultado = "";
+        int numero = 1;
+        int contador = 0;
+        while (contador < 100) {
+            if (esPrimo(numero)) {
+                resultado += contador + ", ";
+                contador++;
+
+            }
+            numero++;
         }
-        
-        if(esPrimo){
-            System.out.println("Es primo");
-        }else{
-            System.out.println("No es primo");
-        }
+        System.out.println("Los primeros 100 numeros primos son: " + resultado);
     }
-    
+
+    private static Boolean esPrimo(int numero) {
+        Boolean esUnNumeroPrimo = true;
+
+        for (int i = 2; i < numero; i++) {
+
+            if (numero % i == 0) {
+                esUnNumeroPrimo = false;
+            }
+        }
+        return esUnNumeroPrimo;
+    }
 }
