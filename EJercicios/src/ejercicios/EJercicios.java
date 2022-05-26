@@ -80,6 +80,10 @@ public class EJercicios {
 
         calcularPromedio(numUno, numDos, numTres);
         parImpar(numUno);
+
+        
+        
+
     }
 
     private static Integer cargarNumero() throws IOException {
@@ -124,4 +128,23 @@ public class EJercicios {
         }
 
     }
+
+    private boolean numerosPrimos(int numero) {
+
+        int contador = 2;
+        boolean primo = true;
+        while ((primo) && (contador != numero)) {
+            if (numero % contador == 0) {
+                primo = false;
+                contador++;
+            }
+        }
+        System.out.println(contador + "es primo");
+
+        return primo;
+
+    }
+
+
+
 }
