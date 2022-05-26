@@ -4,6 +4,10 @@
  */
 package gestionclientes;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -37,7 +41,12 @@ public class formularioClientes extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
+        ListPassword = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
         ListClientes = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ListCorreo = new javax.swing.JList<>();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,18 +77,35 @@ public class formularioClientes extends javax.swing.JFrame {
 
         jLabel4.setText("Password");
 
-        jScrollPane1.setViewportView(ListClientes);
+        jScrollPane1.setViewportView(ListPassword);
+
+        jScrollPane2.setViewportView(ListClientes);
+
+        jScrollPane3.setViewportView(ListCorreo);
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnDelete)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
@@ -91,20 +117,21 @@ public class formularioClientes extends javax.swing.JFrame {
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(56, 56, 56))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(btnGuardar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(282, 282, 282))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(282, 282, 282))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnGuardar)
+                                .addGap(196, 196, 196))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -117,13 +144,20 @@ public class formularioClientes extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnGuardar))
+                            .addComponent(jLabel4)))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(42, Short.MAX_VALUE))
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(4, 4, 4)
+                .addComponent(btnGuardar)
+                .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDelete)
+                .addContainerGap())
         );
 
         pack();
@@ -132,6 +166,10 @@ public class formularioClientes extends javax.swing.JFrame {
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
+    private List<String> nombres = new ArrayList<String>();
+    private List<String> correos = new ArrayList<String>();
+    private List<String> password = new ArrayList<String>();
+
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
@@ -139,18 +177,55 @@ public class formularioClientes extends javax.swing.JFrame {
         String email = this.txtEmail.getText();
         String pass = this.txtPassword.getText();
 
-        //this.ListClientes;ç
-        String[] arreglo = new String[10];
-        arreglo[0] = "Cesar";
-        arreglo[1] = "Juli";
-        arreglo[2] = "Musk";
+//        //this.ListClientes;ç
+//        String[] arreglo = new String[10];
+//        arreglo[0] = "Cesar";
+//        arreglo[1] = "Juli";
+//        arreglo[2] = "Musk";
+        nombres.add(nombre);
+        correos.add(email);
+        password.add(pass);
+        actualizarLista();
 
         JOptionPane.showMessageDialog(rootPane, "El cliente se guardo exitosamente");
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    private void actualizarLista() {
+        // actualizar nombres
+        DefaultListModel datos = new DefaultListModel();
+        for (int i = 0; i < nombres.size(); i++) {
+            String nombre = nombres.get(i);
+            datos.addElement(nombre);
+        }
+        this.ListClientes.setModel(datos);
+
+        // actualizar correos
+        DefaultListModel datos1 = new DefaultListModel();
+        for (int i = 0; i < correos.size(); i++) {
+            String email = correos.get(i);
+            datos1.addElement(email);
+        }
+        this.ListCorreo.setModel(datos1);
+
+        DefaultListModel datos2 = new DefaultListModel();
+        for (int i = 0; i < password.size(); i++) {
+            String pass = password.get(i);
+            datos2.addElement(pass);
+        }
+        this.ListPassword.setModel(datos2);
+    }
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int indice = this.ListClientes.getSelectedIndex();
+        ListClientes.remove(indice);
+        actualizarLista();
+        JOptionPane.showMessageDialog(rootPane, "Se elimino correctamente");
+
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,12 +264,17 @@ public class formularioClientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ListClientes;
+    private javax.swing.JList<String> ListCorreo;
+    private javax.swing.JList<String> ListPassword;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;
