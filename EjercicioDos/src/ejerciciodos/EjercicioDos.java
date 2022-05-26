@@ -19,7 +19,7 @@ public class EjercicioDos {
         int contador = 0;
         while (contador < 100) {
             if (esPrimo(numero)) {
-                resultado += contador + ", ";
+                resultado += numero + ", ";
                 contador++;
 
             }
