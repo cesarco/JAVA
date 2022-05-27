@@ -34,7 +34,7 @@ public class formularioClientes extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
+        txtLastName = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
@@ -47,16 +47,20 @@ public class formularioClientes extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         ListCorreo = new javax.swing.JList<>();
         btnDelete = new javax.swing.JButton();
+        txtName = new javax.swing.JLabel();
+        txtName1 = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JLabel();
+        txtEmail1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Gestion de Clientes");
 
-        jLabel2.setText("Full name");
+        jLabel2.setText("Last name");
 
-        txtName.addActionListener(new java.awt.event.ActionListener() {
+        txtLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
+                txtLastNameActionPerformed(evt);
             }
         });
 
@@ -90,6 +94,16 @@ public class formularioClientes extends javax.swing.JFrame {
             }
         });
 
+        txtName.setText("Name");
+
+        txtName1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtName1ActionPerformed(evt);
+            }
+        });
+
+        txtPhone.setText("Phone");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,16 +119,24 @@ public class formularioClientes extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(79, 79, 79)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPassword)
-                            .addComponent(txtName)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtPhone)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(txtName))
+                                .addGap(79, 79, 79)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtName1)
+                                    .addComponent(txtPassword)
+                                    .addComponent(txtLastName)
+                                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))))
                         .addGap(56, 56, 56))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -133,10 +155,14 @@ public class formularioClientes extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtName)
+                            .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -144,7 +170,11 @@ public class formularioClientes extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPhone)
+                            .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,25 +193,20 @@ public class formularioClientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
-    private List<String> nombres = new ArrayList<String>();
-    private List<String> correos = new ArrayList<String>();
-    private List<String> password = new ArrayList<String>();
+    }//GEN-LAST:event_txtLastNameActionPerformed
+    private List<Cliente> lista = new ArrayList<Cliente>();
 
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        String nombre = this.txtName.getText();
-        String email = this.txtEmail.getText();
-        String pass = this.txtPassword.getText();
 
         Cliente a = new Cliente();
-        a.setNombre("Cesar Luis");
-        a.setApellido("Rodriguez Solera");
-        a.setCorreo("devcesarco@outlook.es");
-        a.setTelefono("33221447");
+        a.setNombre(this.txtName1.getText());
+        a.setApellido(this.txtLastName.getText());
+        a.setCorreo(this.txtEmail.getText());
+        a.setTelefono(this.txtPhone.getText());
         JOptionPane.showMessageDialog(rootPane, a.getNombreCompleto());
 
 //        //this.ListClientes;ç
@@ -189,9 +214,7 @@ public class formularioClientes extends javax.swing.JFrame {
 //        arreglo[0] = "Cesar";
 //        arreglo[1] = "Juli";
 //        arreglo[2] = "Musk";
-        nombres.add(nombre);
-        correos.add(email);
-        password.add(pass);
+        lista.add(a);
         actualizarLista();
 
         JOptionPane.showMessageDialog(rootPane, "El cliente se guardo exitosamente");
@@ -200,26 +223,14 @@ public class formularioClientes extends javax.swing.JFrame {
     private void actualizarLista() {
         // actualizar nombres
         DefaultListModel datos = new DefaultListModel();
-        for (int i = 0; i < nombres.size(); i++) {
-            String nombre = nombres.get(i);
-            datos.addElement(nombre);
+        for (int i = 0; i < lista.size(); i++) {
+            Cliente a = lista.get(i);
+            datos.addElement(a.getNombreCompleto());
         }
         this.ListClientes.setModel(datos);
 
-        // actualizar correos
-        DefaultListModel datos1 = new DefaultListModel();
-        for (int i = 0; i < correos.size(); i++) {
-            String email = correos.get(i);
-            datos1.addElement(email);
-        }
-        this.ListCorreo.setModel(datos1);
-
-        DefaultListModel datos2 = new DefaultListModel();
-        for (int i = 0; i < password.size(); i++) {
-            String pass = password.get(i);
-            datos2.addElement(pass);
-        }
-        this.ListPassword.setModel(datos2);
+  
+       
     }
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
@@ -233,6 +244,10 @@ public class formularioClientes extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "Se elimino correctamente");
 
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void txtName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtName1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtName1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,7 +298,11 @@ public class formularioClientes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtEmail1;
+    private javax.swing.JTextField txtLastName;
+    private javax.swing.JLabel txtName;
+    private javax.swing.JTextField txtName1;
     private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JLabel txtPhone;
     // End of variables declaration//GEN-END:variables
 }

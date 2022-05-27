@@ -15,12 +15,7 @@ public class Cliente {
     private String apellido;
     private String telefono;
 
-    public Cliente() {
-        this.nombre = nombre;
-        this.correo = correo;
-        this.apellido = apellido;
-        this.telefono = telefono;
-    }
+  
 
     public String getNombre() {
         return nombre;
