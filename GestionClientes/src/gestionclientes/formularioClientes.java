@@ -177,6 +177,13 @@ public class formularioClientes extends javax.swing.JFrame {
         String email = this.txtEmail.getText();
         String pass = this.txtPassword.getText();
 
+        Cliente a = new Cliente();
+        a.setNombre("Cesar Luis");
+        a.setApellido("Rodriguez Solera");
+        a.setCorreo("devcesarco@outlook.es");
+        a.setTelefono("33221447");
+        JOptionPane.showMessageDialog(rootPane, a.getNombreCompleto());
+
 //        //this.ListClientes;ç
 //        String[] arreglo = new String[10];
 //        arreglo[0] = "Cesar";
