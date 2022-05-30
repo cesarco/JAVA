@@ -218,7 +218,15 @@ public class formularioClientes extends javax.swing.JFrame {
         actualizarLista();
 
         JOptionPane.showMessageDialog(rootPane, "El cliente se guardo exitosamente");
+        limpiarCajasDeTexto();
     }//GEN-LAST:event_btnGuardarActionPerformed
+    private void limpiarCajasDeTexto() {
+        this.txtName1.setText("");
+        this.txtLastName.setText("");
+        this.txtPhone.setText("");
+        this.txtPassword.setText("");
+
+    }
 
     private void actualizarLista() {
         // actualizar nombres
@@ -229,8 +237,6 @@ public class formularioClientes extends javax.swing.JFrame {
         }
         this.ListClientes.setModel(datos);
 
-  
-       
     }
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
