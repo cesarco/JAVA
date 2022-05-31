@@ -15,8 +15,8 @@ INSERT INTO usuarios(nombre,apellido,fecha_naciemiento, telefono)
 values('Cesar','rodriguez',2001-12-20, 3024198990);
 
 select * from usuarios;
-
-select * from usuarios where id = 1;
+select count(*) as 'Cantidad' from usuarios;
+delete from usuarios where id = 2;
 
 select nombre, apellido 
 from usuarios where id = 1;
@@ -28,3 +28,18 @@ update usuarios
 set nombre = 'cesar luis',
 apellido = 'rodriguez solera'
 where id = 1;
+
+select * from usuarios
+where nombre like 'ce%';
+
+CREATE TABLE publicaciones
+(
+id INT NOT NULL AUTO_INCREMENT,
+autor_id INT NOT NULL,
+titulo VARCHAR(150) NOT NULL,
+texto TEXT NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (autor_id) REFERENCES usuarios(id)
+
+);
+DROP TABLE publicaciones;
