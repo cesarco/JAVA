@@ -11,3 +11,9 @@ alter table usuarios add column telefono varchar(45) null;
 
 alter table usuarios modify column telefono varchar(30) null;
 
+INSERT INTO usuarios(nombre,apellido,fecha_naciemiento, telefono)
+values('Cesar','rodriguez',2001-12-20, 3024198990);
+
+select * from usuarios;
+
+delete from usuarios where id = 1;
