@@ -16,4 +16,15 @@ values('Cesar','rodriguez',2001-12-20, 3024198990);
 
 select * from usuarios;
 
+select * from usuarios where id = 1;
+
+select nombre, apellido 
+from usuarios where id = 1;
+
+
 delete from usuarios where id = 1;
+
+update usuarios
+set nombre = 'cesar luis',
+apellido = 'rodriguez solera'
+where id = 1;
