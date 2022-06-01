@@ -51,8 +51,7 @@ public class formularioClientes extends javax.swing.JFrame {
         txtName = new javax.swing.JLabel();
         txtName1 = new javax.swing.JTextField();
         txtPhone = new javax.swing.JLabel();
-        txtEmail1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtPhone1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,13 +101,6 @@ public class formularioClientes extends javax.swing.JFrame {
 
         txtPhone.setText("Phone");
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,7 +123,7 @@ public class formularioClientes extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(txtPhone)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel2)
@@ -150,9 +142,7 @@ public class formularioClientes extends javax.swing.JFrame {
                         .addGap(117, 117, 117))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnGuardar)
-                        .addGap(87, 87, 87)
-                        .addComponent(jButton1)
-                        .addGap(85, 85, 85))))
+                        .addGap(257, 257, 257))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,14 +170,12 @@ public class formularioClientes extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPhone)
-                            .addComponent(txtEmail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardar)
-                    .addComponent(jButton1))
+                .addComponent(btnGuardar)
                 .addContainerGap(27, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -211,7 +199,8 @@ public class formularioClientes extends javax.swing.JFrame {
         a.setNombre(this.txtName1.getText());
         a.setApellido(this.txtLastName.getText());
         a.setCorreo(this.txtEmail.getText());
-        a.setTelefono(this.txtPhone.getText());
+        a.setTelefono(this.txtPhone1.getText());
+        a.setPass(this.txtPassword.getText());
         JOptionPane.showMessageDialog(rootPane, a.getNombreCompleto());
 
 //        //this.ListClientes;ç
@@ -224,12 +213,25 @@ public class formularioClientes extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(rootPane, "El cliente se guardo exitosamente");
         limpiarCajasDeTexto();
+        
+        ClienteDao dao = new ClienteDao();
+        try {
+            dao.agregar(a);
+        } catch (SQLException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
     private void limpiarCajasDeTexto() {
         this.txtName1.setText("");
         this.txtLastName.setText("");
-        this.txtPhone.setText("");
+        this.txtPhone1.setText("");
         this.txtPassword.setText("");
+        this.txtEmail.setText("");
 
     }
 
@@ -259,20 +261,6 @@ public class formularioClientes extends javax.swing.JFrame {
     private void txtName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtName1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtName1ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        ClienteDao dao = new ClienteDao();
-        try {
-            dao.conectar();
-        } catch (SQLException ex) {
-            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,18 +302,17 @@ public class formularioClientes extends javax.swing.JFrame {
     private javax.swing.JList<String> ListClientes;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtEmail1;
     private javax.swing.JTextField txtLastName;
     private javax.swing.JLabel txtName;
     private javax.swing.JTextField txtName1;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JLabel txtPhone;
+    private javax.swing.JTextField txtPhone1;
     // End of variables declaration//GEN-END:variables
 }

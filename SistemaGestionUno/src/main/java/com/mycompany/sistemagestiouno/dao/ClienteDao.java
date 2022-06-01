@@ -4,9 +4,11 @@
  */
 package com.mycompany.sistemagestiouno.dao;
 
+import com.mycompany.sistemagestionuno.models.Cliente;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Connection;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -15,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class ClienteDao {
 
-    public void conectar() throws SQLException, ClassNotFoundException, InstantiationException {
+    public void agregar(Cliente cliente) throws SQLException, ClassNotFoundException, InstantiationException {
         String bd = "java";
         String user = "root";
         String password = "";
@@ -32,6 +34,13 @@ public class ClienteDao {
         }
         conexion = DriverManager.getConnection(conexionUrl, user, password);
         
-        
+       String sql =" INSERT INTO `clientes` (`id`, `nombre`, `apellido`, "
+               + "`email`, `telefono`, `password`) VALUES (NULL, '"+ cliente.getNombre() +"', "
+               + "'"+ cliente.getApellido() +"', '"+ cliente.getCorreo() +"',"
+               + " '"+ cliente.getTelefono() +"','"+ cliente.getPass()+"');";
+       
+       
+       Statement statement = conexion.createStatement();
+       statement.execute(sql);
     }
 }
