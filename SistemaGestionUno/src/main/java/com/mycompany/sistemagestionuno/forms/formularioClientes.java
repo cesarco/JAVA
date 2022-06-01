@@ -58,6 +58,7 @@ public class formularioClientes extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         JL = new javax.swing.JLabel();
+        btnLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -121,6 +122,13 @@ public class formularioClientes extends javax.swing.JFrame {
 
         jLabel5.setText("ID");
 
+        btnLimpiar.setText("limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,6 +138,8 @@ public class formularioClientes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnLimpiar)
+                        .addGap(37, 37, 37)
                         .addComponent(btnEditar)
                         .addGap(18, 18, 18)
                         .addComponent(btnDelete)))
@@ -205,7 +215,8 @@ public class formularioClientes extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete)
-                    .addComponent(btnEditar))
+                    .addComponent(btnEditar)
+                    .addComponent(btnLimpiar))
                 .addContainerGap())
         );
 
@@ -262,6 +273,7 @@ public class formularioClientes extends javax.swing.JFrame {
         this.txtPhone1.setText("");
         this.txtPassword.setText("");
         this.txtEmail.setText("");
+        this.JL.setText("");
 
     }
 
@@ -347,6 +359,12 @@ public class formularioClientes extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnEditarActionPerformed
 
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        
+        limpiarCajasDeTexto();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -389,6 +407,7 @@ public class formularioClientes extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
