@@ -6,6 +6,7 @@ package com.mycompany.sistemagestionuno.forms;
 
 import com.mycompany.sistemagestiouno.dao.ClienteDao;
 import com.mycompany.sistemagestionuno.models.Cliente;
+import com.mysql.jdbc.StringUtils;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,11 +25,8 @@ public class formularioClientes extends javax.swing.JFrame {
     /**
      * Creates new form formularioClientes
      */
-    
     private List<Cliente> lista = new ArrayList<>();
-            
-            
-            
+
     public formularioClientes() {
         initComponents();
     }
@@ -57,6 +55,9 @@ public class formularioClientes extends javax.swing.JFrame {
         txtName1 = new javax.swing.JTextField();
         txtPhone = new javax.swing.JLabel();
         txtPhone1 = new javax.swing.JTextField();
+        btnEditar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        JL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -111,18 +112,27 @@ public class formularioClientes extends javax.swing.JFrame {
 
         txtPhone.setText("Phone");
 
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("ID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(btnDelete))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnEditar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDelete)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -139,13 +149,15 @@ public class formularioClientes extends javax.swing.JFrame {
                                             .addComponent(jLabel2)
                                             .addComponent(jLabel3)
                                             .addComponent(jLabel4)
-                                            .addComponent(txtName))
+                                            .addComponent(txtName)
+                                            .addComponent(jLabel5))
                                         .addGap(79, 79, 79)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtName1)
                                             .addComponent(txtPassword)
                                             .addComponent(txtLastName)
-                                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(JL)))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(226, 226, 226)))
@@ -159,9 +171,13 @@ public class formularioClientes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(JL))
+                        .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtName)
                             .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -181,15 +197,15 @@ public class formularioClientes extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPhone)
                             .addComponent(txtPhone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
                 .addComponent(btnGuardar)
                 .addContainerGap(27, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnDelete)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDelete)
+                    .addComponent(btnEditar))
                 .addContainerGap())
         );
 
@@ -219,16 +235,12 @@ public class formularioClientes extends javax.swing.JFrame {
 //        arreglo[1] = "Juli";
 //        arreglo[2] = "Musk";
 
-        ClienteDao dao = new ClienteDao();
-        try {
-            dao.agregar(a);
-        } catch (SQLException ex) {
-            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            if (!StringUtils.isEmptyOrWhitespaceOnly(JL.getText())) {
+                a.setId(JL.getText());
+            }
+
+            ClienteDao dao = new ClienteDao();
+            dao.guardar(a);
 
             actualizarLista();
         } catch (SQLException ex) {
@@ -241,7 +253,6 @@ public class formularioClientes extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(rootPane, "El cliente se guardo exitosamente");
         limpiarCajasDeTexto();
-
 
 
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -258,9 +269,9 @@ public class formularioClientes extends javax.swing.JFrame {
         // actualizar nombres
         ClienteDao dao = new ClienteDao();
         lista = dao.mostrar();
-        
+
         DefaultListModel datos = new DefaultListModel();
-        
+
         for (int i = 0; i < lista.size(); i++) {
             Cliente a = lista.get(i);
             datos.addElement(a.getNombreCompleto());
@@ -276,10 +287,10 @@ public class formularioClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
         int indice = this.ListClientes.getSelectedIndex();
         Cliente cliente = lista.get(indice);
-        ClienteDao dao = new ClienteDao ();
+        ClienteDao dao = new ClienteDao();
         try {
             dao.eliminar(cliente.getId());
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -287,7 +298,7 @@ public class formularioClientes extends javax.swing.JFrame {
         } catch (InstantiationException ex) {
             Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         //ListClientes.remove(indice);
         try {
             actualizarLista();
@@ -318,6 +329,23 @@ public class formularioClientes extends javax.swing.JFrame {
             Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formComponentShown
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+        int indice = this.ListClientes.getSelectedIndex();
+        Cliente cliente = lista.get(indice);
+        ClienteDao dao = new ClienteDao();
+
+        this.txtName1.setText(cliente.getNombre());
+        this.txtLastName.setText(cliente.getApellido());
+        this.txtEmail.setText(cliente.getCorreo());
+        this.txtPhone1.setText(cliente.getTelefono());
+        this.txtPassword.setText(cliente.getPass());
+        this.JL.setText(cliente.getId());
+
+        JOptionPane.showMessageDialog(rootPane, "Se elimino correctamente");
+
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,13 +384,16 @@ public class formularioClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel JL;
     private javax.swing.JList<String> ListClientes;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtLastName;

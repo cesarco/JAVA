@@ -5,6 +5,7 @@
 package com.mycompany.sistemagestiouno.dao;
 
 import com.mycompany.sistemagestionuno.models.Cliente;
+import com.mysql.jdbc.StringUtils;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Connection;
@@ -59,7 +60,7 @@ public class ClienteDao {
     }
 
     public void eliminar(String id) throws SQLException, ClassNotFoundException, InstantiationException {
-      Connection conexion = conectare();
+        Connection conexion = conectare();
 
         String sql = "DELETE FROM clientes WHERE `clientes`.`id` = " + id;
 
@@ -87,5 +88,29 @@ public class ClienteDao {
         }
 
         return conexion;
+    }
+
+    public void actualizar(Cliente cliente) throws SQLException, ClassNotFoundException, InstantiationException {
+
+        Connection conexion = conectare();
+
+        String sql = "UPDATE `clientes` SET `nombre` = "
+                + "'" + cliente.getNombre() + "', "
+                + "`apellido` = '" + cliente.getApellido() + "',`email` = "
+                + "'" + cliente.getCorreo() + "',`telefono` = "
+                + "'" + cliente.getTelefono() + "', `password` = "
+                + "'" + cliente.getPass() + "'"
+                + " WHERE `clientes`.`id` = " + cliente.getId()+";";
+
+        Statement statement = conexion.createStatement();
+        statement.execute(sql);
+    }
+
+    public void guardar(Cliente a) throws SQLException, ClassNotFoundException, InstantiationException {
+        if(StringUtils.isEmptyOrWhitespaceOnly(a.getId())){
+            agregar(a);
+        }else{
+            actualizar(a);
+        }
     }
 }
