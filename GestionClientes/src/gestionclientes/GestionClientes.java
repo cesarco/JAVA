@@ -4,6 +4,8 @@
  */
 package gestionclientes;
 
+import com.mycompany.gestioncliente.forms.formularioClientes;
+
 /**
  *
  * @author cesarco
