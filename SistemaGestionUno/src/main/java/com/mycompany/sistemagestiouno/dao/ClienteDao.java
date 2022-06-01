@@ -22,21 +22,8 @@ import java.util.logging.Logger;
 public class ClienteDao {
 
     public void agregar(Cliente cliente) throws SQLException, ClassNotFoundException, InstantiationException {
-        String bd = "java";
-        String user = "root";
-        String password = "";
-        String hosting = "localhost";
-        String port = "3306";
-        String driver = "com.mysql.jdbc.Driver";
-        String conexionUrl = "jdbc:mysql://" + hosting + ":" + port + "/" + bd + "?useSSL=false";
 
-        Connection conexion = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        conexion = DriverManager.getConnection(conexionUrl, user, password);
+        Connection conexion = conectare();
 
         String sql = " INSERT INTO `clientes` (`id`, `nombre`, `apellido`, "
                 + "`email`, `telefono`, `password`) VALUES (NULL, '" + cliente.getNombre() + "', "
@@ -48,33 +35,18 @@ public class ClienteDao {
     }
 
     public List<Cliente> mostrar() throws SQLException, ClassNotFoundException, InstantiationException {
-        String bd = "java";
-        String user = "root";
-        String password = "";
-        String hosting = "localhost";
-        String port = "3306";
-        String driver = "com.mysql.jdbc.Driver";
-        String conexionUrl = "jdbc:mysql://" + hosting + ":" + port + "/" + bd + "?useSSL=false";
 
-        Connection conexion = null;
-
+        Connection conexion = conectare();
         List<Cliente> mostrando = new ArrayList<>();
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        conexion = DriverManager.getConnection(conexionUrl, user, password);
 
         String sql = "SELECT * FROM `clientes` ";
 
         Statement statement = conexion.createStatement();
         ResultSet resultado = statement.executeQuery(sql);
-        
+
         while (resultado.next()) {
             Cliente cliente = new Cliente();
-            cliente.setId(resultado.getString("nombre"));
+            cliente.setId(resultado.getString("id"));
             cliente.setNombre(resultado.getString("nombre"));
             cliente.setApellido(resultado.getString("apellido"));
             cliente.setCorreo(resultado.getString("email"));
@@ -86,4 +58,34 @@ public class ClienteDao {
 
     }
 
+    public void eliminar(Cliente cliente) throws SQLException, ClassNotFoundException, InstantiationException {
+      Connection conexion = conectare();
+
+        String sql = "DELETE FROM clientes WHERE `clientes`.`id` = 6";
+
+        Statement statement = conexion.createStatement();
+        statement.execute(sql);
+    }
+
+    public Connection conectare() throws ClassNotFoundException, InstantiationException, SQLException {
+        String bd = "java";
+        String user = "root";
+        String password = "";
+        String hosting = "localhost";
+        String port = "3306";
+        String driver = "com.mysql.jdbc.Driver";
+        String conexionUrl = "jdbc:mysql://" + hosting + ":" + port + "/" + bd + "?useSSL=false";
+
+        Connection conexion = null;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conexion = DriverManager.getConnection(conexionUrl, user, password);
+
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return conexion;
+    }
 }
