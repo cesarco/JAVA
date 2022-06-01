@@ -24,6 +24,11 @@ public class formularioClientes extends javax.swing.JFrame {
     /**
      * Creates new form formularioClientes
      */
+    
+    private List<Cliente> lista = new ArrayList<>();
+            
+            
+            
     public formularioClientes() {
         initComponents();
     }
@@ -252,8 +257,10 @@ public class formularioClientes extends javax.swing.JFrame {
     private void actualizarLista() throws SQLException, ClassNotFoundException, InstantiationException {
         // actualizar nombres
         ClienteDao dao = new ClienteDao();
-        List<Cliente> lista = dao.mostrar();
+        lista = dao.mostrar();
+        
         DefaultListModel datos = new DefaultListModel();
+        
         for (int i = 0; i < lista.size(); i++) {
             Cliente a = lista.get(i);
             datos.addElement(a.getNombreCompleto());
@@ -268,7 +275,20 @@ public class formularioClientes extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         int indice = this.ListClientes.getSelectedIndex();
-        ListClientes.remove(indice);
+        Cliente cliente = lista.get(indice);
+        ClienteDao dao = new ClienteDao ();
+        try {
+            dao.eliminar(cliente.getId());
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //ListClientes.remove(indice);
         try {
             actualizarLista();
         } catch (SQLException ex) {

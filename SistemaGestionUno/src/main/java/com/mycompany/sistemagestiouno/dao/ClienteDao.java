@@ -58,10 +58,10 @@ public class ClienteDao {
 
     }
 
-    public void eliminar(Cliente cliente) throws SQLException, ClassNotFoundException, InstantiationException {
+    public void eliminar(String id) throws SQLException, ClassNotFoundException, InstantiationException {
       Connection conexion = conectare();
 
-        String sql = "DELETE FROM clientes WHERE `clientes`.`id` = 6";
+        String sql = "DELETE FROM clientes WHERE `clientes`.`id` = " + id;
 
         Statement statement = conexion.createStatement();
         statement.execute(sql);
