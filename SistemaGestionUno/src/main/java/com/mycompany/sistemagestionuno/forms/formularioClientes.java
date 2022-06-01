@@ -54,6 +54,11 @@ public class formularioClientes extends javax.swing.JFrame {
         txtPhone1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jLabel1.setText("Gestion de Clientes");
 
@@ -189,7 +194,6 @@ public class formularioClientes extends javax.swing.JFrame {
     private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLastNameActionPerformed
-    private List<Cliente> lista = new ArrayList<Cliente>();
 
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -203,17 +207,13 @@ public class formularioClientes extends javax.swing.JFrame {
         a.setPass(this.txtPassword.getText());
         JOptionPane.showMessageDialog(rootPane, a.getNombreCompleto());
 
-//        //this.ListClientes;ç
+        try {
+            //        //this.ListClientes;ç
 //        String[] arreglo = new String[10];
 //        arreglo[0] = "Cesar";
 //        arreglo[1] = "Juli";
 //        arreglo[2] = "Musk";
-        lista.add(a);
-        actualizarLista();
 
-        JOptionPane.showMessageDialog(rootPane, "El cliente se guardo exitosamente");
-        limpiarCajasDeTexto();
-        
         ClienteDao dao = new ClienteDao();
         try {
             dao.agregar(a);
@@ -224,7 +224,21 @@ public class formularioClientes extends javax.swing.JFrame {
         } catch (InstantiationException ex) {
             Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+            actualizarLista();
+        } catch (SQLException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        JOptionPane.showMessageDialog(rootPane, "El cliente se guardo exitosamente");
+        limpiarCajasDeTexto();
+
+
+
     }//GEN-LAST:event_btnGuardarActionPerformed
     private void limpiarCajasDeTexto() {
         this.txtName1.setText("");
@@ -235,8 +249,10 @@ public class formularioClientes extends javax.swing.JFrame {
 
     }
 
-    private void actualizarLista() {
+    private void actualizarLista() throws SQLException, ClassNotFoundException, InstantiationException {
         // actualizar nombres
+        ClienteDao dao = new ClienteDao();
+        List<Cliente> lista = dao.mostrar();
         DefaultListModel datos = new DefaultListModel();
         for (int i = 0; i < lista.size(); i++) {
             Cliente a = lista.get(i);
@@ -253,7 +269,15 @@ public class formularioClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
         int indice = this.ListClientes.getSelectedIndex();
         ListClientes.remove(indice);
-        actualizarLista();
+        try {
+            actualizarLista();
+        } catch (SQLException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
         JOptionPane.showMessageDialog(rootPane, "Se elimino correctamente");
 
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -261,6 +285,19 @@ public class formularioClientes extends javax.swing.JFrame {
     private void txtName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtName1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtName1ActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        try {
+            // TODO add your handling code here:
+            actualizarLista();
+        } catch (SQLException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(formularioClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
