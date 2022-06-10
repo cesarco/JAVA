@@ -70,10 +70,17 @@ public class Main {
         *  es bastante pesada y tarda en ejecutarse.
         * .parallel() ayuda mucho a mejorar el rendimiento*/
 
-        // simple example of Parallel - Pipeline
+        // simple example of Parallel - Pipeline = nos permite concatenar
+        // las funciones, metodos, como tal palabras recervadas con un .
         cities.stream().parallel().forEach(System.out::println);
 
+        System.out.println("");
 
+
+        /* el filter lo que nos permite es poder filtrar ese array, lo que se escribe es una expression lambda,
+        * para este caso va a devolver las ciudades que comienzen con B */
+        cities.stream().filter(city -> city.startsWith("B")).forEach(System.out::println);
+        cities.stream().filter(Main::filterCity).forEach(System.out::println);
 
     }
 
@@ -86,5 +93,8 @@ public class Main {
         System.out.println(city);
     }
 
+    public static boolean filterCity(String city){
+        return city.startsWith("B");
+    }
 
 }
