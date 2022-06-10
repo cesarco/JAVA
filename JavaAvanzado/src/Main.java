@@ -53,6 +53,14 @@ public class Main {
         cities.stream().forEach(city -> System.out.println(city));
 
         System.out.println("hello world");
+
+        System.out.println("");
+
+        // Reference to a Method
+        //  :: hace referencia a metodos
+        cities.stream().forEach(Main::printCity);
+        cities.forEach(System.out::println);
+
     }
 
         /* Las exprenciones lambda lo que nos permite es reducir
@@ -63,4 +71,6 @@ public class Main {
     public static  void printCity(String city){
         System.out.println(city);
     }
+
+
 }
