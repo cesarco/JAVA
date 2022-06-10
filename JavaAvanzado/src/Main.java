@@ -61,6 +61,20 @@ public class Main {
         cities.stream().forEach(Main::printCity);
         cities.forEach(System.out::println);
 
+        System.out.println("");
+
+        /* Con la concurrencia con Stream (Parallel)+
+        * es poder ejecutarlo de forma paralela de
+        *  pendiendo de los nucleos del microprocesador,
+        *  esto en varios hilos es conveniente cuando una tarea
+        *  es bastante pesada y tarda en ejecutarse.
+        * .parallel() ayuda mucho a mejorar el rendimiento*/
+
+        // simple example of Parallel - Pipeline
+        cities.stream().parallel().forEach(System.out::println);
+
+
+
     }
 
         /* Las exprenciones lambda lo que nos permite es reducir
