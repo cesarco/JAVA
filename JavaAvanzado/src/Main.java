@@ -79,9 +79,17 @@ public class Main {
 
         /* el filter lo que nos permite es poder filtrar ese array, lo que se escribe es una expression lambda,
         * para este caso va a devolver las ciudades que comienzen con B */
-        cities.stream().filter(city -> city.startsWith("B")).forEach(System.out::println);
-        cities.stream().filter(Main::filterCity).forEach(System.out::println);
+        cities.stream().filter(city -> city.startsWith("B"))
+                .filter(citys -> citys.startsWith("N"))
+                .forEach(System.out::println);
 
+        cities.stream().filter(Main::filterCity).forEach(System.out::println);
+/*
+        cities.stream().filter(city -> {
+            boolean result = city.startsWith("N");
+            return result;
+        }).forEach(System.out::println);
+*/
     }
 
         /* Las exprenciones lambda lo que nos permite es reducir
