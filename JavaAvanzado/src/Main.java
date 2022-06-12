@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class Main {
 
@@ -84,6 +87,12 @@ public class Main {
                 .forEach(System.out::println);
 
         cities.stream().filter(Main::filterCity).forEach(System.out::println);
+
+        System.out.println("");
+
+        List<String> filteredCities = cities.stream().filter(city -> city.startsWith("B"))
+                .filter(city -> city.contains("n"))
+                .collect(toList());
 /*
         cities.stream().filter(city -> {
             boolean result = city.startsWith("N");
@@ -104,5 +113,9 @@ public class Main {
     public static boolean filterCity(String city){
         return city.startsWith("B");
     }
+
+
+    // los webscrapper son utilizados dentro de la web para analizar
+    // los contenidos y poder asiobtener informacion, como los correos electronicos por ejemplo.
 
 }
