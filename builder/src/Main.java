@@ -1,9 +1,12 @@
 public class Main {
 
     public static void main(String[] args) {
-        Person Cesar = new Person(
-                "Cesar Luis", "Rodriguez Solera",
-                "devcesarco@gmail.com", "3024198990");
+        Person Cesar =  Person.Builder.aPerson()
+                .withName("Cesar Luis")
+                .withLastName("Rodriguez Solera")
+                .withEmail("devcesarco@outlook.es")
+                .withPhone("302415889")
+                .build();
 
 
        if( Cesar.getLastName().equals("Rodriguez")){
@@ -14,3 +17,7 @@ public class Main {
 
 
 }
+/*
+el buider lo que trata en si, es mantener esa inmutabilidad, no permitir la modificaion
+de parametros internos y asi prevenir los nullPointerException esos campo nulos
+ */
