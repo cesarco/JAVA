@@ -1,11 +1,15 @@
 import java.lang.reflect.MalformedParameterizedTypeException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Main {
 
+    public static Map<String, Double> priceByAirline;
+
     public static void main(String[] args)
     {
+        init();
         String from = "BCN";
         String to = "JFK";
 
@@ -16,9 +20,19 @@ public class Main {
         System.out.println(result);
     }
 
-    private static Double getPriceTrip(String airline, String from, String to){
-        Map<String, Double> priceByAirline = new HashMap<>();
+    private static Double getLowestPrice(String from, String to){
+        AtomicReference<Double> lowestPrice = new AtomicReference<>(null);
 
+        priceByAirline.keySet().stream().parallel().forEach(airline -> {
+              Double price =  getPriceTrip(airline, from, to);
+              if(lowestPrice.get() == null || price < lowestPrice.get()){
+                  lowestPrice.set(price);
+              }
+        });
+        return lowestPrice.get();
+    }
+
+    private static void init(){
         priceByAirline.put("American Airlines", 550.0);
         priceByAirline.put("US Airways", 610.0);
         priceByAirline.put("Delta Airlines", 458.0);
@@ -29,6 +43,10 @@ public class Main {
         priceByAirline.put("Avianca", 745.2);
         priceByAirline.put("LATAM Airlines Group", 530.6);
         priceByAirline.put("Aeromexico", 740.0);
+    }
+
+    private static Double getPriceTrip(String airline, String from, String to){
+         new HashMap<>();
 
         try {
             Thread.sleep(1500);
