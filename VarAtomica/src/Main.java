@@ -1,11 +1,12 @@
 import java.lang.reflect.MalformedParameterizedTypeException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class Main {
 
-    public static Map<String, Double> priceByAirline;
+    public static Map<String, Double> priceByAirline = new HashMap<>();
 
     public static void main(String[] args)
     {
@@ -13,11 +14,15 @@ public class Main {
         String from = "BCN";
         String to = "JFK";
 
-        Double lowestPrice = 0.0;
-        Double avgPrice = 0.0;
-
+        Double lowestPrice = getLowestPrice(from, to);
+        Double avgPrice = getAvgPrice(from, to);
+/*
         Double result = getPriceTrip("Delta Airlines", from, to);
         System.out.println(result);
+
+ */
+        System.out.println("Lowest Price : " + lowestPrice);
+        System.out.println("Avg Price : " + avgPrice);
     }
 
     private static Double getLowestPrice(String from, String to){
@@ -30,6 +35,21 @@ public class Main {
               }
         });
         return lowestPrice.get();
+    }
+
+    private static Double getAvgPrice(String from, String to){
+        AtomicReference<Double> totalPrice = new AtomicReference<>(0.0);
+        AtomicInteger countAirlines = new AtomicInteger(0);
+
+        priceByAirline.keySet().stream().parallel().forEach(airline -> {
+            Double price =  getPriceTrip(airline, from, to);
+            Double result = totalPrice.get() + price;
+            totalPrice.set(result);
+            countAirlines.incrementAndGet();
+        });
+
+
+        return totalPrice.get() / countAirlines.get();
     }
 
     private static void init(){
@@ -46,7 +66,7 @@ public class Main {
     }
 
     private static Double getPriceTrip(String airline, String from, String to){
-         new HashMap<>();
+
 
         try {
             Thread.sleep(1500);
